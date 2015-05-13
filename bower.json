@@ -1,0 +1,18 @@
+{
+  "name": "Elearning-system",
+  "authors": [
+    "Abdul Hafidz <aditans88@gmail.com>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.3",
+    "angular-material": "~0.8.3",
+    "angular-ui-router": "~0.2.14"
+  }
+}

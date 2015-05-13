@@ -1,7 +1,7 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "xtwoend/elearning",
+	"description": "Elearning System.",
+	"keywords": ["elearning", "laravel"],
 	"license": "MIT",
 	"type": "project",
 	"require": {
