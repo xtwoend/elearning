@@ -1,1 +1,28 @@
+.md-card.md-default-theme {
+  background-color: #ffffff;
+}
+.md-content.md-default-theme {
+  background-color: transparent !important;
+}
 
+
+.md-card.md-default-theme {
+  background-color: #ffffff;
+}
+.md-content.md-default-theme {
+  background-color: transparent !important;
+}
+
+.signin-header {
+  margin-top: 50px;
+}
+.page-forgot .main-body,
+.page-signin .main-body,
+.page-signup .main-body {
+  max-width: 420px;
+  margin: 10px auto;
+}
+body {
+  background: url(../images/1.png) center center no-repeat fixed;
+  background-size: cover;
+}
