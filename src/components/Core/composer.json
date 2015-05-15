@@ -1,0 +1,15 @@
+{
+	"name": "elearning-component/core",
+	"description": "",
+	"authors": [
+		{
+			"name": "Elearning",
+			"email": "aditans88@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Elearning\\Core\\": ""
+		}
+	}
+}

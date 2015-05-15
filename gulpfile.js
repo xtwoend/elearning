@@ -1,7 +1,7 @@
 var elixir = require('laravel-elixir');
 
 require('laravel-elixir-bower');
-require('laravel-elixir-angular');
+//require('laravel-elixir-angular');
 require('laravel-elixir-imagemin');
 
 /*
@@ -16,15 +16,17 @@ require('laravel-elixir-imagemin');
  */
 
  elixir.config.sourcemaps = false;
- elixir.config.registerWatcher("default", "angular/**");
+ //elixir.config.registerWatcher("default", "angular/**");
 
  elixir(function(mix) {
  	mix
  	.bower()
- 	.angular('angular/')
- 	.less('../../../angular/**/*.less', 'resources/.tmp/')
- 	.copy('angular/app/**/*.html', 'public/views/app/')
- 	.copy('angular/directives/**/*.html', 'public/views/directives/')
+ 	//.angular('angular/')
+ 	.less('app.less', 'resources/.tmp/')
+ 	
+ 	//.less('../../../angular/**/*.less', 'resources/.tmp/')
+ 	//.copy('angular/app/**/*.html', 'public/views/app/')
+ 	//.copy('angular/directives/**/*.html', 'public/views/directives/')
  	.stylesIn('resources/.tmp', 'public/css/')
  	.imagemin();
 

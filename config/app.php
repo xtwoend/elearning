@@ -144,6 +144,11 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
+        'Collective\Html\HtmlServiceProvider',
+
+        'Pingpong\Modules\ModulesServiceProvider',
+        'Pingpong\Modules\Providers\BootstrapServiceProvider',
+
     ],
 
     /*
@@ -192,6 +197,10 @@ return [
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View'      => 'Illuminate\Support\Facades\View',
 
+        'Module'    => 'Pingpong\Modules\Facades\Module',
+       
+        'HTML'      => 'Collective\Html\HtmlFacade',
+        'Form'      => 'Collective\Html\FormFacade',
     ],
 
 ];

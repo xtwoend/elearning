@@ -11,9 +11,13 @@
 		      url: "/",
 		      templateUrl: "views/app/landing/landing.html"
 		    })
-		    .state('login', {
+		    .state('auth', {
 		      url: "/login",
 		      templateUrl: "views/app/login/login.html"
+		    })
+		    .state('auth.register', {
+		    	url: "/register",
+		    	templateUrl: "views/app/register/register.html"
 		    });
     
 	});
