@@ -23,7 +23,8 @@ require('laravel-elixir-imagemin');
  	.bower()
  	//.angular('angular/')
  	.less('app.less', 'resources/.tmp/')
- 	
+ 	.scriptsIn('resources/assets/js')
+    .copy('resources/.tmp/js/','public/js/app.js')
  	//.less('../../../angular/**/*.less', 'resources/.tmp/')
  	//.copy('angular/app/**/*.html', 'public/views/app/')
  	//.copy('angular/directives/**/*.html', 'public/views/directives/')

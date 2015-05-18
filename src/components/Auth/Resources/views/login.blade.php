@@ -38,7 +38,7 @@
             <header class="wrapper text-center">
               <strong>OR </strong>
             </header>
-            
+            <div class="text-center m-t m-b"><a href="{{ url('auth/register') }}"> Register here </a></div>
             <div class="text-center">
               <!--
               <a href="{{ url('oauth/loginByTwitter') }}" class="btn btn-rounded btn-lg btn-icon btn-info"><i class="fa fa-twitter"></i></a>

@@ -3,14 +3,18 @@
 <head>  
   	<meta charset="utf-8" />
 
-    <title>{{ Meta::get('title', 'DMusik | Music Free Streaming') }}</title>
+    <title>{{ Meta::get('title', 'Elearning System') }}</title>
   	
     @include('partials.meta')
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  	<link rel="stylesheet" href="/css/all.css" type="text/css" />
-  	<link rel="stylesheet" href="/css/app.css" type="text/css" /> 
+    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="/css/app.css" type="text/css" />  
 
     @yield('css')
 
@@ -23,18 +27,11 @@
 <body class="">
   
 	@yield('body')
-
-  <section id="slidepanel" class="cb_slide_panel vbox">
-    <div class="slim-scroll" data-height="auto" data-disable-fade-out="false" data-distance="2" data-size="6px" data-railOpacity="0.2">
-      <div class="inner"><div class="content"></div></div>
-    </div>
-  </section>
   
-  <script src="/js/vendor.js"></script>
-
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
   <!-- App -->
-  <script src="/js/slimscroll/jquery.slimscroll.min.js"></script>
-  <script src="/js/infinitescroll/jquery.infinitescroll.min.js" ></script>  
+  <script src="/js/slimscroll/jquery.slimscroll.min.js"></script> 
   <script src="/js/app.plugin.js"></script>
 
   <script src="/js/app.js"></script>
@@ -49,7 +46,7 @@
 
     ga('create', 'UA-59355601-1', 'auto');
     ga('send', 'pageview');
-
+    
   </script>
-
 </body>
+</html>

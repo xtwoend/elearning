@@ -1,0 +1,12 @@
+<?php namespace $MODULE_NAMESPACE$\$MODULENAME$\Http\Controllers;
+
+use Elearning\Core\Routing\Controller;
+
+class $CONTROLLERNAME$ extends Controller {
+	
+	public function index()
+	{
+		return view('$NAMESPACE$::index');
+	}
+	
+}
