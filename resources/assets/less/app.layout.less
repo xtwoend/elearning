@@ -59,81 +59,8 @@
 		z-index: 1000;		
 	}
 }
-
-.player-side {	
-	min-height: 220px;
-	padding: 0 15px;
-	> p{
-		margin-top: 15px;
-		display: inline-block;
-	}
-	> .btn,
-	> .btn-group,
-	> .btn-toolbar,
-	{
-		margin-top: 10px;
-	}
-	> .btn-lg{
-		margin-top: 0;
-	}
-	.nav-tabs {
-		border: none;
-		margin-left: -15px;
-		margin-right: -15px;	
-		> li {
-			a{
-				border: none !important;
-				border-radius: 0;
-				padding-top: 15px;
-				padding-bottom: 15px;
-				line-height: 20px;
-				&:hover, 
-				&:focus
-				{
-					background-color: transparent;
-				}
-			}
-			&.active a{
-				color: @text-color;
-				&,
-				&:hover{
-					background-color: @body-bg;
-				}
-			}
-		}
-		&.nav-white{
-			> li.active a{
-				&,
-				&:hover{
-					background-color: #fff;
-				}
-			}
-		}
-	}
-	&.navbar{
-		border-radius: 0;
-		border: none;
-		margin-bottom: 0;
-		padding:0;
-		position: relative;
-		z-index: 1000;		
-	}
-}
-
 body.container{
 	padding: 0;
-}
-
-.container-player {
-	width: 900px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.bottom-margin {
-	padding-bottom: 60px;
 }
 
 @media (orientation:landscape) {
@@ -162,9 +89,6 @@ body.container{
 		.vbox{
 			> section,
 			> footer{
-				position: absolute;
-			}
-			.player-side {
 				position: absolute;
 			}
 			&.flex{
@@ -207,11 +131,6 @@ body.container{
 			bottom: 0;
 			width: 100%;
 		}
-		.player-side {
-			top: 0;
-			bottom: 0;
-			width: 100%;
-		}
 		> header{
 			~ section {
 				top: 50px;
@@ -229,15 +148,8 @@ body.container{
 			&.w-f-md{
 				bottom: 60px;
 			}
-			&.w-f-xl{
-				bottom: 220px;
-			}
 		}
 		> footer {
-			top: auto;
-			z-index: 1000;
-		}
-		.player-side {
 			top: auto;
 			z-index: 1000;
 		}
@@ -245,9 +157,6 @@ body.container{
 			> header,
 			> section,
 			> footer {
-				position: inherit;
-			}
-			> .player-side {
 				position: inherit;
 			}
 			> section{
@@ -280,9 +189,6 @@ body.container{
 	}
 	.aside{
 		width: 200px;
-	}
-	.aside-mdx{
-		width: 220px;
 	}	
 	.aside-md{
 		width: 240px;
@@ -353,7 +259,7 @@ body.container{
 
 .slimScrollBar{
 	border-radius: 5px;
-	border: 1px solid transparent;
+	border: 2px solid transparent;
 	border-radius: 10px;
 	background-clip: padding-box !important;
 }
@@ -369,12 +275,4 @@ body.container{
 			position: relative;
 		}
 	}
-}
-
-.md-card.md-default-theme {
-  background-color: rgb(255,255,255);
-}
-
-.md-default-theme {
-  background-color: none !important;
 }

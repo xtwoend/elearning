@@ -9,12 +9,11 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="/css/animate.css" type="text/css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="/css/simple-line-icons.css" type="text/css" />
     <link rel="stylesheet" href="/css/font.css" type="text/css" />
-    <link rel="stylesheet" href="/css/app.css" type="text/css" />  
+    <link rel="stylesheet" href="/css/all.css" type="text/css" />  
 
     @yield('css')
 
@@ -23,6 +22,9 @@
     <script src="/js/ie/respond.min.js"></script>
     <script src="/js/ie/excanvas.js"></script>
   	<![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/JSXTransformer.js"></script>
+    
 </head>
 <body class="">
   
@@ -35,6 +37,7 @@
   <script src="/js/app.plugin.js"></script>
 
   <script src="/js/app.js"></script>
+  <script src="/js/all.js"></script>
   
   @yield('js')
 

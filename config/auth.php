@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => 'Elearning\Auth\Entities\User',
+    'model' => 'Elearning\User\Entities\User',
 
     /*
     |--------------------------------------------------------------------------

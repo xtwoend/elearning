@@ -1,0 +1,15 @@
+{
+    "name": "Sosmed",
+    "alias": "sosmed",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Elearning\\Sosmed\\Providers\\SosmedServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}
