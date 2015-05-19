@@ -149,6 +149,8 @@ return [
         'Pingpong\Modules\ModulesServiceProvider',
         'Pingpong\Modules\Providers\BootstrapServiceProvider',
 
+        'Caffeinated\Menus\MenusServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider',
     ],
 
     /*
@@ -201,6 +203,9 @@ return [
        
         'HTML'      => 'Collective\Html\HtmlFacade',
         'Form'      => 'Collective\Html\FormFacade',
+
+        'Menu'      => 'Caffeinated\Menus\Facades\Menu',
+        'Debugbar'  => 'Barryvdh\Debugbar\Facade',
     ],
 
 ];

@@ -1,7 +1,7 @@
 var elixir = require('laravel-elixir');
 
 require('laravel-elixir-bower');
-//require('laravel-elixir-angular');
+require('laravel-elixir-angular');
 require('laravel-elixir-imagemin');
 
 /*

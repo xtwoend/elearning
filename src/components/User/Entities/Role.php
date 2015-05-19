@@ -1,10 +1,9 @@
-<?php namespace Elearnig\User\Entities;
+<?php namespace Elearning\User\Entities;
 
 
 
 use Illuminate\Database\Eloquent\Model;
 use Elearning\Core\Traits\SlugableTrait;
-
 
 class Role extends Model {
 

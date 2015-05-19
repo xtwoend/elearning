@@ -10,7 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//set main menu
+Menu::make('main', function($menu) {
+    
+});
 
+//set administrator menu
+Menu::make('administrator', function($menu){
+
+});
 
 Route::group(['middleware' => 'auth'], function()
 {

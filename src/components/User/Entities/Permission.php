@@ -1,4 +1,4 @@
-<?php namespace Elearnig\User\Entities;
+<?php namespace Elearning\User\Entities;
 
 
 

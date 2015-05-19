@@ -11,8 +11,14 @@
                          <textarea name="post_body" placeholder="Tulis catatan anda disini" class="form-control b-non f-n-b"></textarea>
                         </div>
                         <footer class="panel-footer bg-white">
-                        	&nbsp;
-                        	<button type="submit" class="btn btn-primary btn-xs pull-right">Kirim</button>
+                          <div class="pull-right">
+                            <button type="submit" class="btn btn-primary btn-xs">Kirim</button>
+                          </div>
+                          <ul class="list-inline footer-menu">
+                            <li><a href="#"><i class="fa fa-camera i-md"></i></a></li>
+                            <li><a href="#"><i class="fa fa-user i-md"></i></a></li>
+                            <li><a href="#"><i class="fa fa-paperclip i-md"></i></a></li>                            
+                          </ul>
                         </footer>
                 	</form>
 				</section>
@@ -84,7 +90,7 @@
           <section className="comment-body panel panel-default">
             <header className="panel-heading bg-white">
               <span className="text-muted m-l-sm pull-right">
-                <i className="fa fa-clock-o"></i>
+                <a href="#" data-toggle="popover" data-html="true" data-placement="top" data-content="<div class='scrollable' style='height:40px'>Vivamus sagittis lacus vel augue laoreet rutrum faucibus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus.</div>" title="" data-original-title='<button type="button" class="close pull-right" data-dismiss="popover">&times;</button>Popover on top'><i className="fa fa-angle-down"></i></a>
               </span>
               <span className="block font-bold">
                 <a href="#">{this.props.author}</a>

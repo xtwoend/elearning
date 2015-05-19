@@ -88,82 +88,21 @@
 
                 <!-- nav -->                 
                 <nav class="nav-primary hidden-xs">
-                  <ul class="nav bg clearfix">
-                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                      Discover
-                    </li>
-                    <li>
-                      <a href="{{ url('/') }}">
-                        <i class="fa fa-home text-success"></i>
-                        <span>Home</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="genres.html">
-                        <i class="icon-music-tone-alt icon text-info"></i>
-                        <span>Genres</span>
-                      </a>
-                    </li>
+                  
+                  <ul class="nav bg clearfix" data-ride="collapse">
+                                      
+                    @include('partials.menu.items', ['items'=> $menu_main->roots()])
+
                     <li class="m-b hidden-nav-xs"></li>
                   </ul>
-                  <ul class="nav" data-ride="collapse">
-                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                      Interface
-                    </li>
-                    <li >
-                      <a href="#" class="auto">
-                        <span class="pull-right text-muted">
-                          <i class="fa fa-angle-left text"></i>
-                          <i class="fa fa-angle-down text-active"></i>
-                        </span>
-                        <i class="icon-screen-desktop icon">
-                        </i>
-                        <span>Layouts</span>
-                      </a>
-                      <ul class="nav dk text-sm">
-                        <li >
-                          <a href="layout-color.html" class="auto">                                                        
-                            <i class="fa fa-angle-right text-xs"></i>
-
-                            <span>Color option</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="layout-boxed.html" class="auto">                                                        
-                            <i class="fa fa-angle-right text-xs"></i>
-
-                            <span>Boxed layout</span>
-                          </a>
-                        </li>
-                        <li >
-                          <a href="layout-fluid.html" class="auto">                                                        
-                            <i class="fa fa-angle-right text-xs"></i>
-
-                            <span>Fluid layout</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+                  @if(Auth::user()->isAdministrator())
                   <ul class="nav text-sm">
                     <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                      <span class="pull-right"><a href="#"><i class="icon-plus i-lg"></i></a></span>
-                      Playlist
+                      Administrator Menu
                     </li>
-                    <li>
-                      <a href="#">
-                        <i class="icon-music-tone icon"></i>
-                        <span>Hip-Pop</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="icon-playlist icon text-success-lter"></i>
-                        <b class="badge bg-success dker pull-right">9</b>
-                        <span>Jazz</span>
-                      </a>
-                    </li>
+                    @include('partials.menu.items', ['items' => $menu_administrator->roots()])
                   </ul>
+                  @endif
                 </nav>
                 <!-- / nav -->
               </div>

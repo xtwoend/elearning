@@ -1,6 +1,7 @@
 <?php namespace Elearning\User\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Caffeinated\Menus\Facades\Menu;
 
 class UserServiceProvider extends ServiceProvider {
 
@@ -10,6 +11,20 @@ class UserServiceProvider extends ServiceProvider {
 	 * @var bool
 	 */
 	protected $defer = false;
+
+	/**
+	 * boot loader.
+	 *
+	 * @return
+	 */
+	public function boot()
+	{	
+		//administrator menu
+      	$menu = Menu::get('administrator');
+		$menu->add('Users', 'users')->icon('users');
+
+		
+	}
 
 	/**
 	 * Register the service provider.

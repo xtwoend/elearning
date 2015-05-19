@@ -1,6 +1,7 @@
 <?php namespace Elearning\Sosmed\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Caffeinated\Menus\Facades\Menu;
 
 class SosmedServiceProvider extends ServiceProvider {
 
@@ -10,6 +11,17 @@ class SosmedServiceProvider extends ServiceProvider {
 	 * @var bool
 	 */
 	protected $defer = false;
+
+	/**
+	 * boot loader.
+	 *
+	 * @return
+	 */
+	public function boot()
+	{	
+		$menu = Menu::get('main');
+		$menu->add('Home', '')->icon('home');
+	}
 
 	/**
 	 * Register the service provider.

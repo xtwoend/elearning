@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Elearning\Core\Utils\Meta;
+use Caffeinated\Menus\Facades\Menu;
 
 class CoreServiceProvider extends ServiceProvider {
 
