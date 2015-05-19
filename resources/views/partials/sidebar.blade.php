@@ -51,6 +51,7 @@
                         </section>
                       </section>
                     </li>
+                    @if(Auth::check())
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                         <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
@@ -81,6 +82,7 @@
                         </li>
                       </ul>
                     </li>
+                    @endif
                   </ul>
                 </div>
 
@@ -166,7 +168,7 @@
                 <!-- / nav -->
               </div>
             </section>
-            
+            @if(Auth::check())
             <footer class="footer hidden-xs no-padder text-center-nav-xs">
               <div class="bg hidden-xs ">
                   <div class="dropdown dropup wrapper-sm clearfix">
@@ -206,7 +208,9 @@
                       </li>
                     </ul>
                   </div>
-                </div>            </footer>
+                </div>      
+              </footer>
+              @endif
           </section>
         </aside>
         <!-- /.aside -->

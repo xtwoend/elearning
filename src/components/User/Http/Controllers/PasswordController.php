@@ -21,7 +21,7 @@ class PasswordController extends Controller {
 	 */
 	public function getEmail()
 	{
-		return view('auth::password');
+		return view('user::password');
 	}
 
 	/**
@@ -72,7 +72,7 @@ class PasswordController extends Controller {
 			throw new NotFoundHttpException;
 		}
 
-		return view('auth.reset')->with('token', $token);
+		return view('user::reset')->with('token', $token);
 	}
 
 	/**

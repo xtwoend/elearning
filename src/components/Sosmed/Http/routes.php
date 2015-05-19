@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace' => 'Elearning\Sosmed\Http\Controllers'], function()
+Route::group(['namespace' => 'Elearning\Sosmed\Http\Controllers', 'middleware'=> ['auth']], function()
 {
 	Route::get('/', 'PostController@index');
 
