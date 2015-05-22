@@ -75,7 +75,7 @@ class AuthController extends Controller {
      */
     public function confirmEmail($token)
     {
-        $this->users->confirmWithEmail($token);
+        $this->users->confirmByEmail($token);
 
         flash('You are now confirmed. Please login.');
        
