@@ -151,6 +151,8 @@ return [
 
         'Caffeinated\Menus\MenusServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+
+        'Laracasts\Flash\FlashServiceProvider',
     ],
 
     /*

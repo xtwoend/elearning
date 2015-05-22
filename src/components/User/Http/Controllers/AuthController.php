@@ -3,6 +3,7 @@
 use Elearning\User\Http\Requests\RegisterRequest;
 use Elearning\User\Repositories\UserRepository;
 use Elearning\Core\Routing\Controller;
+use Elearning\User\Mailers\AppMailer;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class AuthController extends Controller {
      */
     protected function create(array $data)
     {
-        return $this->users->create([
+        return $this->users->register([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -54,13 +55,32 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function postRegister(RegisterRequest $request)
+	public function postRegister(RegisterRequest $request, AppMailer $mailer)
 	{
 
-		Auth::login($this->create($request->all()));
+		$user = $this->create($request->all());
 
-		return redirect($this->redirectPath());
+		$mailer->sendEmailConfirmationTo($user);
+
+        flash('Please confirm your email address.');
+        
+        return redirect()->back();
 	}
+
+	/**
+     * Confirm a user's email address.
+     *
+     * @param  string $token
+     * @return mixed
+     */
+    public function confirmEmail($token)
+    {
+        $this->users->confirmWithEmail($token);
+
+        flash('You are now confirmed. Please login.');
+       
+        return redirect('auth/login');
+    }
 
 	/**
 	 * Show the application login form.
@@ -87,9 +107,12 @@ class AuthController extends Controller {
 		$credentials = $this->getCredentials($request);
 
 		if (Auth::attempt($credentials, $request->has('remember')))
-		{
+		{	
+			flash('Welcome back!');
 			return redirect()->intended($this->redirectPath());
 		}
+		
+		flash('Could not sign you in.');
 
 		return redirect($this->loginPath())
 					->withInput($request->only('email', 'remember'))
@@ -99,15 +122,19 @@ class AuthController extends Controller {
 	}
 
 	/**
-	 * Get the needed authorization credentials from the request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return array
-	 */
-	protected function getCredentials(Request $request)
-	{
-		return $request->only('email', 'password');
-	}
+     * Get the login credentials and requirements.
+     *
+     * @param  Request $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
+    {
+        return [
+            'email'    => $request->input('email'),
+            'password' => $request->input('password'),
+            'verified' => true
+        ];
+    }
 
 	/**
 	 * Get the failed login message.

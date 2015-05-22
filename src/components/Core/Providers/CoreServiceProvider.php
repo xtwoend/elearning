@@ -22,6 +22,8 @@ class CoreServiceProvider extends ServiceProvider {
 	{
 		$loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('Meta', 'Elearning\Core\Facades\Meta');
+
+        include(__DIR__.'../../helpers.php');
 	}
 
 	/**

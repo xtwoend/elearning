@@ -1,6 +1,12 @@
 (function(){
 	"use strict";
 
+	$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
 	$('[ajax-form]').each(function(){
 		var $this = $(this);
 			

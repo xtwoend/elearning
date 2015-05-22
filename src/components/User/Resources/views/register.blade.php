@@ -33,10 +33,7 @@
             <div class="form-group">
               {!! Form::password('password', ['class'=>'form-control rounded input-lg text-center no-border' ,'placeholder' => 'Password']) !!}
          	  </div>
-          	<div class="form-group">
-              {!! Form::password('password_confirmation', ['class'=>'form-control rounded input-lg text-center no-border' ,'placeholder' => 'Type Password Again']) !!}
-          	</div>
-
+          	
           <div class="checkbox i-checks m-b">
             <label class="m-l">
               <input type="checkbox" checked=""><i></i> Agree the <a href="#">terms and policy</a>

@@ -27,3 +27,7 @@ Route::group(['middleware' => 'auth'], function()
 	});
 
 });
+
+Route::get('chat', function(){
+	return view('chat');
+});

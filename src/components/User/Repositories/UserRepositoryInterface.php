@@ -26,4 +26,11 @@ interface UserRepositoryInterface
      * @return
      */
     public function register(array $attributes = array());
+
+    /**
+     * confirm email by email.
+     * @param String $token 
+     * @return bolean
+     */
+    public function confirmByEmail($token);
 }

@@ -39,7 +39,21 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
      * @return
      */
     public function register(array $attributes = array())
-    {
+    {   
+        $email = explode("@", $attributes['email']);
+        $username = $email[0];
+        $attributes['username'] = $username;
+        
     	return $this->model->create($attributes);
+    }
+
+    /**
+     * confirm email by email.
+     * @param String $token 
+     * @return bolean
+     */
+    public function confirmByEmail($token)
+    {
+        return $this->model->whereToken($token)->firstOrFail()->confirmEmail();
     }
 }
