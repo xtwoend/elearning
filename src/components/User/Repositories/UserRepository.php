@@ -53,7 +53,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
      * @return bolean
      */
     public function confirmByEmail($token)
-    {
-        return $this->model->whereToken($token)->firstOrFail()->confirmEmail();
+    {   
+        $user = $this->model->whereToken($token)->firstOrFail();
+        $user->confirmEmail();
+        return $user;
     }
 }

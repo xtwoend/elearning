@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ec8370e73295ac989135eb9f50198735",
+    "hash": "1f0b354c4cfe982b787735824d838491",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1254,7 +1254,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3d6727e1764c37e1219b0a1fc7e003ef61615434",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/4063a08a713d57be062fa4381d52e565bfc0dc28",
                 "reference": "ff9b64b6d7d6c231187c3e024f743c57a17a3921",
                 "shasum": ""
             },
@@ -1983,6 +1983,61 @@
             ],
             "description": "Support Component of Pingpong Sky Package",
             "time": "2015-05-21 07:07:57"
+        },
+        {
+            "name": "predis/predis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "b8decc75a884fce1bfc62d5bc6823298a678f890"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/b8decc75a884fce1bfc62d5bc6823298a678f890",
+                "reference": "b8decc75a884fce1bfc62d5bc6823298a678f890",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete PHP client library for Redis",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2015-01-02 13:37:26"
         },
         {
             "name": "prettus/l5-repository",
@@ -4238,7 +4293,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "pingpong/modules": 20
+        "pingpong/modules": 20,
+        "predis/predis": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

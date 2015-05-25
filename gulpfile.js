@@ -1,3 +1,4 @@
+process.env.DISABLE_NOTIFIER = true;
 var elixir = require('laravel-elixir');
 
 require('laravel-elixir-bower');
@@ -16,18 +17,15 @@ require('laravel-elixir-imagemin');
  */
 
  elixir.config.sourcemaps = false;
- //elixir.config.registerWatcher("default", "angular/**");
+ elixir.config.registerWatcher("default", "angular/**");
 
  elixir(function(mix) {
  	mix
- 	//.bower()
- 	//.angular('angular/')
- 	.less('app.less', 'resources/.tmp/')
- 	.scriptsIn('resources/assets/js', 'public/js/')
-    //.copy('resources/.tmp/js/','public/js/app.js')
- 	//.less('../../../angular/**/*.less', 'resources/.tmp/')
- 	//.copy('angular/app/**/*.html', 'public/views/app/')
- 	//.copy('angular/directives/**/*.html', 'public/views/directives/')
+ 	.bower()
+ 	.angular('angular/')
+ 	.less('../../../angular/**/*.less', 'resources/.tmp/')
+ 	.copy('angular/app/**/*.html', 'public/views/app/')
+ 	.copy('angular/directives/**/*.html', 'public/views/directives/')
  	.stylesIn('resources/.tmp', 'public/css/')
  	.imagemin();
 

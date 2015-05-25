@@ -21,9 +21,7 @@ class UserServiceProvider extends ServiceProvider {
 	{	
 		//administrator menu
       	$menu = Menu::get('administrator');
-		$menu->add('Users', 'users')->icon('users');
-
-		
+		$menu->add('Users', 'users')->icon('users');	
 	}
 
 	/**

@@ -3,10 +3,10 @@
 use Elearning\User\Http\Requests\RegisterRequest;
 use Elearning\User\Repositories\UserRepository;
 use Elearning\Core\Routing\Controller;
-use Elearning\User\Mailers\AppMailer;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Elearning\User\Events\UserRegisteredEvent; 
 
 class AuthController extends Controller {
 	
@@ -55,12 +55,11 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function postRegister(RegisterRequest $request, AppMailer $mailer)
+	public function postRegister(RegisterRequest $request)
 	{
-
 		$user = $this->create($request->all());
 
-		$mailer->sendEmailConfirmationTo($user);
+		event(new UserRegisteredEvent($user));
 
         flash('Please confirm your email address.');
         
@@ -75,10 +74,16 @@ class AuthController extends Controller {
      */
     public function confirmEmail($token)
     {
-        $this->users->confirmByEmail($token);
+        $user = $this->users->confirmByEmail($token);
+        
+        if($user){
+        	
+        	Auth::login($user);
 
-        flash('You are now confirmed. Please login.');
-       
+	        flash('Welcome back!');
+			return redirect()->intended($this->redirectPath());
+       	}
+
         return redirect('auth/login');
     }
 
