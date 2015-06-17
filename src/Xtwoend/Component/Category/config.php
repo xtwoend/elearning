@@ -1,0 +1,18 @@
+<?php
+
+
+return [
+	
+	// value of are passed through this before save of tags
+	'normalizer' => '\Xtwoend\Component\Category\TaggingUtil::slug',
+	
+	// display value of tags are passed through (for front end display)
+	'displayer' => '\Illuminate\Support\Str::title',
+	
+	// database connection for \Xtwoend\Component\Category\Entities\Tag model to use
+	// 	'connection' => 'mysql',
+	
+	// when deleting a model, remove all the tags first
+	'untag_on_delete' => true,
+	
+];

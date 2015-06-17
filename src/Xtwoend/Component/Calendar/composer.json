@@ -1,0 +1,26 @@
+{
+    "name": "xtwoend/calendar",
+    "description": "The Calendar component.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdul Hafidz Anshari",
+            "email": "aditans88@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/config": "~5",
+        "illuminate/support": "~5",
+        "xtwoend/repository": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xtwoend\\Component\\Calendar": ""
+        },
+        "classmap": [
+            "resources/database/migrations"
+        ],
+    },
+    "minimum-stability": "dev"
+}
