@@ -55,14 +55,56 @@ class ThreadPresenter extends BasePresenter
         return $this->wrappedObject->updated_at->diffForHumans();
     }
 
+    /**
+     * [body description]
+     * @return [type] [description]
+     */
     public function body()
-    {
+    {  
         $body = $this->wrappedObject->body;
         $body = $this->convertMarkdown($body);
         $body = $this->linkify($body);
         return $body;
     }
 
+    /**
+     * [markAsSolutionUrl description]
+     * @param  [type] $replyId [description]
+     * @return [type]          [description]
+     */
+    public function markAsSolutionUrl($replyId)
+    {
+        return action('Forum\ForumThreadsController@getMarkQuestionSolved', [$this->wrappedObject->id, $replyId]);
+    }
+
+    /**
+     * [markAsUnsolvedUrl description]
+     * @return [type] [description]
+     */
+    public function markAsUnsolvedUrl()
+    {
+        return action('Forum\ForumThreadsController@getMarkQuestionUnsolved', [$this->wrappedObject->id]);
+    }
+
+    /**
+     * [editUrl description]
+     * @return [type] [description]
+     */
+    public function editUrl()
+    {
+        return action('Forum\ForumThreadsController@edit', [$this->id]);
+    }
+
+    /**
+     * [deleteUrl description]
+     * @return [type] [description]
+     */
+    public function deleteUrl()
+    {
+        return action('Forum\ForumThreadsController@destroy', [$this->id]);
+    }
+
+    //-------------
     private function linkify($content)
     {
         $linkify = new Linkify();

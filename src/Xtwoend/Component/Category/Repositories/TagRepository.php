@@ -26,4 +26,14 @@ class TagRepository extends BaseRepository implements TagRepositoryInterface
     {
         return \Xtwoend\Component\Category\Entities\Tag::class;
     }
+
+    /**
+     * [getTagsByIds description]
+     * @param  array  $tags [description]
+     * @return [type]       [description]
+     */
+    public function getTagsByIds(array $tags = [])
+    {
+        
+    }
 }

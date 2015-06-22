@@ -13,8 +13,8 @@ class ElearningServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        
+    {   
+        //
     }
 
     /**

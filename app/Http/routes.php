@@ -13,10 +13,27 @@
 
 Route::get('/', 'HomeController@index');
 
+/**
+ * Calendar modul
+ */
 Route::resource('calendar', 'CalendarController');
 
-Route::resource('forum', 'Forum\ForumThreadsController');
+/**
+ * Forum modul
+ */
 Route::post('forum/{slug}', 'Forum\ForumRepliesController@store');
+Route::get('forum/mark_solved/{threadId}/{replyId}', 'Forum\ForumThreadsController@getMarkQuestionSolved');
+Route::get('forum/mark_unsolved/{threadId}', 'Forum\ForumThreadsController@getMarkQuestionUnsolved');
+Route::resource('forum', 'Forum\ForumThreadsController');
+Route::resource('forum/reply', 'Forum\ForumRepliesController');
+Route::get('api/v1/get_tread', 'Api\v1\ForumThreadsController@getThread');
+Route::get('api/v1/get_tread_reply', 'Api\v1\ForumRepliesController@getReply');
+Route::put('forum/thread/update', 'Forum\ForumThreadsController@update');
+
+/**
+ * PSB modul
+ */
+Route::resource('pendaftars', 'Psb\RegisterController');
 
 
 get('/test', function() {

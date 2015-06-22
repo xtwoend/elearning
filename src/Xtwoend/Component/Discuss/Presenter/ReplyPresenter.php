@@ -23,19 +23,28 @@ use Str;
 
 class ReplyPresenter extends BasePresenter
 {   
+    /**
+     * [$markdownParser description]
+     * @var [type]
+     */
     protected $markdownParser;
-
+    
+    public $resource;
+    /**
+     * [__construct description]
+     * @param ForumReply $resource [description]
+     */
 	public function __construct(ForumReply $resource)
     {
         $this->wrappedObject = $resource;
+        $this->resource = $resource;
     }
 
     public function url()
-    {
-        if ( ! $this->wrappedObject->slug) {
-            return '';
-        }
-        return action('DiscussController@show', [$this->wrappedObject->slug]);
+    {   $queryString = new ReplyQueryStringGenerator;
+        $slug = $this->wrappedObject->thread->slug;
+        $threadUrl = action('Forum\ForumThreadsController@show', [$slug]);
+        return $threadUrl . $queryString->generate($this->wrappedObject);
     }
 
 	public function created_ago()
@@ -54,6 +63,24 @@ class ReplyPresenter extends BasePresenter
         $body = $this->convertMarkdown($body);
         $body = $this->linkify($body);
         return $body;
+    }
+
+    /**
+     * [editUrl description]
+     * @return [type] [description]
+     */
+    public function editUrl()
+    {
+        return action('Forum\ForumRepliesController@edit', [$this->id]);
+    }
+
+    /**
+     * [deleteUrl description]
+     * @return [type] [description]
+     */
+    public function deleteUrl()
+    {
+        return action('Forum\ForumRepliesController@destroy', [$this->id]);
     }
 
     private function linkify($content)

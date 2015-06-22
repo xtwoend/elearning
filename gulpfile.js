@@ -14,5 +14,5 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix
     .less('app.less')
-   	.scripts(['app.js'], 'public/js/app.js');
+   	.scripts(['app.js','discuss.js','editable.js'], 'public/js/app.js');
 });

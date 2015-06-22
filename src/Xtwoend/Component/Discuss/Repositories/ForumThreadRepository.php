@@ -14,6 +14,7 @@ namespace Xtwoend\Component\Discuss\Repositories;
 
 use Xtwoend\Component\Repository\Eloquent\BaseRepository;
 use Xtwoend\Component\Repository\Exceptions\EntityNotFoundException;
+use Xtwoend\Component\Discuss\Entities\ForumThread;
 
 class ForumThreadRepository extends BaseRepository implements ForumThreadRepositoryInterface
 {
@@ -25,7 +26,7 @@ class ForumThreadRepository extends BaseRepository implements ForumThreadReposit
      */
     function model()
     {
-        return \Xtwoend\Component\Discuss\Entities\ForumThread::class;
+        return ForumThread::class;
     }
 
     /**
@@ -42,7 +43,7 @@ class ForumThreadRepository extends BaseRepository implements ForumThreadReposit
 
     public function getBySlug($slug)
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->with('replies','author','acceptedSolution', 'mostRecentReply')->where('slug', $slug)->first();
     }
 
     public function requireBySlug($slug)
@@ -55,4 +56,19 @@ class ForumThreadRepository extends BaseRepository implements ForumThreadReposit
 
         return $model;
     }
+
+    public function getThreadRepliesPaginated(ForumThread $threads, $perPage = 20)
+    {
+        return $threads->replies()->paginate($perPage);
+    }
+
+
+    public function getThreadsPagging($request, $limit = 20, $columns = ['*'])
+    {
+        $filter = $request->get('tags', false);
+        $model = ($filter)? $this->model->withAnyTag($filter): $this->model;
+        $results = $model->paginate($limit, $columns); 
+        return $results;
+    }
+
 }

@@ -9,8 +9,11 @@ use App\Http\Controllers\Controller;
 use Xtwoend\Component\Category\Repositories\TagRepository;
 use Xtwoend\Component\Discuss\Repositories\ForumThreadRepository;
 use Xtwoend\Component\Discuss\Repositories\ForumReplyRepository;
+use Xtwoend\Component\Discuss\Jobs\ForumReplyCreator;
+use Xtwoend\Component\Discuss\Jobs\ForumReplyCreatorListener;
+use Xtwoend\Component\Discuss\Presenter\ReplyPresenter;
 
-class ForumRepliesController extends Controller
+class ForumRepliesController extends Controller implements ForumReplyCreatorListener
 {   
     /**
      * [$tags description]
@@ -71,20 +74,31 @@ class ForumRepliesController extends Controller
     public function store(Request $request, $threadSlug)
     {   
         $thread = $this->threads->requireBySlug($threadSlug);
-
-        $validator = \Validator::make($request->all(), [
+        
+         $this->validate($request, [
             'body' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect('forum/'.$thread->slug)
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        $command = \App::make('Xtwoend\Component\Discuss\Jobs\ForumReplyCreator');
+        return $command->create($this,
+            [
+            'body'   => $request->get('body'),
+            'author' => \Auth::user(),
+            'ip' => $request->ip(),
+            ],
+            $thread->id
+        );
+    }
 
-        $thread = $this->replies->createThread($request->all());
+    public function replyCreationError($errors)
+    {
+        return back()->withErrors($errors)->withInput();
+    }
 
-        return redirect('forum/'.$thread->slug);
+    public function replyCreated($reply)
+    {    
+        $reply = new ReplyPresenter($reply);
+        return redirect($reply->url);
     }
 
     /**
@@ -115,9 +129,13 @@ class ForumRepliesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        $reply = $this->replies->find($request->id);
+        $reply->body = $request->get('body');
+        $reply->save();
+        $reply = new ReplyPresenter($reply);
+        return $reply->body;
     }
 
     /**
@@ -128,6 +146,6 @@ class ForumRepliesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

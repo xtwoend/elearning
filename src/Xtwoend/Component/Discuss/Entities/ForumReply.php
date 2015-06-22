@@ -38,9 +38,49 @@ class ForumReply extends Model implements HasPresenter
      */
     public function thread()
     {
-    	return $this->belongsTo(ForumReply::class, 'thread_id');
+    	return $this->belongsTo(ForumThread::class, 'thread_id');
     }
 
+    /**
+     * [author description]
+     * @return [type] [description]
+     */
+    public function author()
+    {
+        return $this->belongsTo(config('auth.model'), 'author_id');
+    }  
+
+    /**
+     * [getPrecedingReplyCount description]
+     * @return [type] [description]
+     */
+    public function getPrecedingReplyCount()
+    {
+        return $this->newQuery()->where('thread_id', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
+    }
+
+    /**
+     * [isManageableBy description]
+     * @param  [type]  $user [description]
+     * @return boolean       [description]
+     */
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isForumAdmin();
+    }
+
+    /**
+     * [isOwnedBy description]
+     * @param  [type]  $user [description]
+     * @return boolean       [description]
+     */
+    public function isOwnedBy($user)
+    {
+        if ( ! $user) return false;
+        return $user->id == $this->author_id;
+    }
+    
     /**
      * Presenter Reply
      * @return ReplyPresenter

@@ -12,6 +12,7 @@ namespace Xtwoend\Component\Category;
  * @author     Abdul Hafidz Anshari
  * @license    BSD License (3-clause) 
  */
+use Xtwoend\Component\Category\Entities\Tag;
 
 class TaggingUtil {
 	

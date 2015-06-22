@@ -68,21 +68,168 @@ class ForumThread extends Model implements HasPresenter
     }
     
     /**
-     * [solutionthread description]
+     * [acceptedSolution description]
      * @return [type] [description]
      */
-    public function solutionthread()
+    public function acceptedSolution()
     {
-        return $this->hasOne(get_class(), 'solution_reply_id');
+        return $this->belongsTo(ForumReply::class, 'solution_reply_id');
     }
 
     /**
-     * [is_question description]
+     * [mostRecentReply description]
+     * @return [type] [description]
+     */
+    public function mostRecentReply()
+    {
+        return $this->belongsTo(ForumReply::class, 'most_recent_reply_id');
+    }
+
+    /**
+     * [isQuestion description]
      * @return boolean [description]
      */
-    public function is_question()
+    public function isQuestion()
     {
-        return $this->attributes['is_question'];
+        return $this->is_question;
+    }
+
+    /**
+     * [isSolved description]
+     * @return boolean [description]
+     */
+    public function isSolved()
+    {
+        return $this->isQuestion() && ! is_null($this->solution_reply_id);
+    }
+
+    /**
+     * [replyTheSolution description]
+     * @return [type] [description]
+     */
+    public function replyTheSolution()
+    {
+        if($this->isSolved())
+        {
+            return $this->replies()->find($this->solution_reply_id);
+        }
+
+        return ;
+    }
+
+    /**
+     * [isManageableBy description]
+     * @param  [type]  $user [description]
+     * @return boolean       [description]
+     */
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isForumAdmin();
+    }
+
+    /**
+     * [isOwnedBy description]
+     * @param  [type]  $user [description]
+     * @return boolean       [description]
+     */
+    public function isOwnedBy($user)
+    {
+        if ( ! $user) return false;
+        return $user->id == $this->author_id;
+    }
+
+    /**
+     * [isReplyTheSolution description]
+     * @param  [type]  $reply [description]
+     * @return boolean        [description]
+     */
+    public function isReplyTheSolution($reply)
+    {
+        return $reply->id == $this->solution_reply_id;
+    }
+
+    /**
+     * set most recent reply
+     * @param Reply $reply [description]
+     */
+    public function setMostRecentReply(ForumReply $reply)
+    {
+        $this->most_recent_reply_id = $reply->id;
+        $this->updateReplyCount();
+        $this->save();
+    }
+
+    /**
+     * update counter reply
+     * @return [type] [description]
+     */
+    public function updateReplyCount()
+    {
+        if ($this->exists) {
+            $this->reply_count = $this->replies()->count();
+            $this->save();
+        }
+    }
+
+    /**
+     * Slug Mutator
+     * @param [type] $subject [description]
+     */
+    public function setSubjectAttribute($subject)
+    {
+        $this->attributes['subject'] = $subject;
+        $this->attributes['slug'] = $this->generateNewSlug();
+    }
+
+    /**
+     * [generateNewSlug description]
+     * @return [type] [description]
+     */
+    private function generateNewSlug()
+    {
+        $i = 0;
+        do {
+            $slug = $this->generateSlugByIncrementer($i++);
+        } while ($this->getCountBySlug($slug) > 0);
+
+        return $slug;
+    }
+
+    /**
+     * [getCountBySlug description]
+     * @param  [type] $slug [description]
+     * @return [type]       [description]
+     */
+    private function getCountBySlug($slug)
+    {
+        $query = static::where('slug', '=', $slug);
+
+        if ($this->exists) {
+            $query->where('id', '!=', $this->id);
+        }
+
+        return $query->count();
+    }
+
+    /**
+     * [generateSlugByIncrementer description]
+     * @param  [type] $i [description]
+     * @return [type]    [description]
+     */
+    private function generateSlugByIncrementer($i)
+    {
+        if ($i == 0) $i = '';
+        /*
+        if ($this->created_at) {
+            $date = date('m-d-Y', strtotime($this->created_at));
+        } else {
+            $date = date('m-d-Y');
+        }
+        
+        return str_slug("{$date} - {$this->subject}" . $i);
+        */
+        return str_slug("{$this->subject}-" . $i);
     }
 
     /**

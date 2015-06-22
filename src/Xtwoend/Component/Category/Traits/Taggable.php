@@ -11,7 +11,9 @@ namespace Xtwoend\Component\Category\Traits;
  * @author     Abdul Hafidz Anshari
  * @license    BSD License (3-clause) 
  */
+
 use Xtwoend\Component\Category\TaggingUtil;
+use Xtwoend\Component\Category\Entities\Tagged;
 
 trait Taggable 
 {
