@@ -14,6 +14,12 @@ class ForumThreadUpdater extends Job
     protected $threads;
 
     /**
+     * [$tags description]
+     * @var [type]
+     */
+    protected $tags;
+    
+    /**
      * Create a new job instance.
      *
      * @return void
@@ -24,7 +30,7 @@ class ForumThreadUpdater extends Job
     }
 
     public function update(ForumThreadUpdaterListener $observer, $thread, $data)
-    {
+    {   
         return $this->updateRecord($thread, $observer, $data);
     }
 
@@ -36,21 +42,17 @@ class ForumThreadUpdater extends Job
         if ( ! $this->threads->save($thread)) {
             return $observer->threadUpdateError($thread->getErrors());
         }
+        //retag if change it
+        if(isset($data['tags']))
+        {
+            $thread->retag($data['tags']); 
+        }
 
-       
         return $observer->threadUpdated($thread);
     }
 
-    public function updateRaw(ForumThreadUpdaterListener $observer, $thread, $data)
+    public function setTags($tags)
     {
-        $thread->fill($data);
-
-        // check the model validation
-        if ( ! $this->threads->save($thread)) {
-            return ['message' => 'error update'];
-        }
-       
-        return $observer->threadUpdatedJson($thread);
+        $this->tags = $tags;
     }
-
 }   

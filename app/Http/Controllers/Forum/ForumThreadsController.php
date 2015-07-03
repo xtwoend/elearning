@@ -184,29 +184,22 @@ class ForumThreadsController extends Controller implements
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request)
+    public function update($id, Request $request)
     {   
-        $thread = $this->threads->find($request->get('id'));
+        $thread = $this->threads->find($id);
 
-        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(\Auth::user())) {
+        if (! $thread->isManageableBy(\Auth::user())) {
             return redirect($thread->url);
         }
-
+        
         $command = \App::make('Xtwoend\Component\Discuss\Jobs\ForumThreadUpdater');
-        return $command->updateRaw($this, $thread, [
+        return $command->update($this, $thread, [
+            'subject' => $request->get('subject'),
             'body' => $request->get('body'),
+            'author' => \Auth::user(),
+            'is_question' => $request->get('is_question', 0),
+            'tags' => $request->get('tags')
         ]);
-    }
-
-    /**
-     * [threadUpdatedJson description]
-     * @param  [type] $thread [description]
-     * @return [type]         [description]
-     */
-    public function threadUpdatedJson($thread)
-    {
-        $thread = new ThreadPresenter($thread);
-        return $thread->body;
     }
 
     /**
@@ -236,7 +229,7 @@ class ForumThreadsController extends Controller implements
      * @return [type]         [description]
      */
     public function threadUpdated($thread)
-    {
+    {  
         $thread = new ThreadPresenter($thread);
         return redirect($thread->url); 
     }

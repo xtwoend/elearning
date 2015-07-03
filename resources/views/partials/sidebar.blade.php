@@ -19,13 +19,7 @@
             <li class="active"><a href="{{ url('/') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li><a href="{{ url('calendar') }}"><i class='fa fa-link'></i> <span>Calendar</span></a></li>
             <li><a href="{{ url('forum') }}"><i class='fa fa-link'></i> <span>Discuss</span></a></li>
-            <li class="treeview">
-              <a href="#"><i class='fa fa-link'></i> <span>PPDB / PSB</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">Daftar</a></li>
-                <li><a href="{{ url('psb/pendaftars') }}">Pendaftar</a></li>
-              </ul>
-            </li>
+            <li><a href="{{ url('quiz') }}"><i class='fa fa-link'></i> <span>Quiz</span></a></li>
             <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">

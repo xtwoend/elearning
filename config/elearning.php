@@ -32,6 +32,7 @@ return [
 		Xtwoend\Component\Calendar\CalendarServiceProvider::class,
 		Xtwoend\Component\Discuss\DiscussServiceProvider::class,
 		Xtwoend\Component\Category\CategoryServiceProvider::class,
+		Xtwoend\Component\Quiz\QuizServiceProvider::class,
 	],
 
 	

@@ -9,5 +9,4 @@ interface ForumThreadUpdaterListener
 {
     public function threadUpdateError($errors);
     public function threadUpdated($thread);
-    public function threadUpdatedJson($thread);
 }

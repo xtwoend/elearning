@@ -1,6 +1,6 @@
 <?php 
 
-namespace Xtwoend\Component\Magazine;
+namespace Xtwoend\Component\Quiz;
 
  /**
  * FileName
@@ -14,7 +14,7 @@ namespace Xtwoend\Component\Magazine;
 
 use Illuminate\Support\ServiceProvider;
 
-class MagazineServiceProvider extends ServiceProvider
+class QuizServiceProvider extends ServiceProvider
 {
 	
 	/**
@@ -24,9 +24,13 @@ class MagazineServiceProvider extends ServiceProvider
      */
     public function boot()
     {   
+        $this->loadTranslationsFrom(__DIR__ . '/resource/lang', 'user');
         $this->publishes([
             __DIR__.'/resources/database/migrations' => base_path('database/migrations'),
-        ], 'migration');   
+        ], 'migration');
+        $this->publishes([
+            __DIR__.'/config.php' => config_path('quiz.php')
+        ], 'config');
     }
 
     /**
@@ -36,7 +40,7 @@ class MagazineServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+       //
     }
 
     /**
@@ -48,4 +52,5 @@ class MagazineServiceProvider extends ServiceProvider
     {
         return [];
     }
+
 }

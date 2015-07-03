@@ -25,13 +25,15 @@ class ThreadPresenter extends BasePresenter
 {   
     protected $markdownParser;
 
+    public $wrappedObject;
+
 	public function __construct(ForumThread $resource)
     {
         $this->wrappedObject = $resource;
     }
 
     public function url()
-    {
+    {   
         if ( ! $this->wrappedObject->slug) {
             return '';
         }

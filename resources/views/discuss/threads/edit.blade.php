@@ -29,7 +29,7 @@
 
               <!-- Form Thried Forum Modal -->
                 <div class="box box-solid">
-                  {!! Form::open(['url' => 'forum', 'method' => 'PUT', 'name' => 'thread']) !!} 
+                  {!! Form::open(['url' => url('forum', $thread->id), 'method' => 'PUT', 'name' => 'thread']) !!} 
                     <div class="box-body">
                       
                       <div class="form-group">
@@ -39,7 +39,7 @@
                       </div>
                       <div class="form-group">
                         <label>And Start Talking:</label>
-                        {!! Form::textarea('body', $thread->resource->body , ['class'=> 'form-control', 'placeholder'=> 'Enter desctription ...', 'rows' => 10, ]) !!} 
+                        {!! Form::textarea('body', $thread->wrappedObject->body , ['class'=> 'form-control', 'placeholder'=> 'Enter desctription ...', 'rows' => 10, ]) !!} 
                         <small class="text-danger">{{ $errors->first('body') }}</small>
                         <p class="help-block">* You may use Markdown with GitHub-flavored code blocks.</p>
                       </div>

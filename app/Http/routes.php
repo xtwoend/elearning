@@ -28,13 +28,11 @@ Route::resource('forum', 'Forum\ForumThreadsController');
 Route::resource('forum/reply', 'Forum\ForumRepliesController');
 Route::get('api/v1/get_tread', 'Api\v1\ForumThreadsController@getThread');
 Route::get('api/v1/get_tread_reply', 'Api\v1\ForumRepliesController@getReply');
-Route::put('forum/thread/update', 'Forum\ForumThreadsController@update');
 
 /**
- * PSB modul
+ * Quiz modul
  */
-Route::resource('pendaftars', 'Psb\RegisterController');
-
+Route::resource('quiz', 'QuizController');
 
 get('/test', function() {
 	for($i=1; $i<10000; $i++)
